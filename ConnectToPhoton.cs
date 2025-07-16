@@ -11,8 +11,7 @@ public partial class NetworkConnector : MonoBehaviourPunCallbacks
 	// Token: 0x060008F5 RID: 2293 RVA: 0x000421EC File Offset: 0x000403EC
 	public static void ConnectToPhoton()
 	{
-		PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "";
-		PhotonNetwork.PhotonServerSettings.AppSettings.AppIdVoice = "";
+		PhotonNetwork.OfflineMode = true;
 		BuildVersion version = new BuildVersion(Application.version);
 		PhotonNetwork.AutomaticallySyncScene = true;
 		PhotonNetwork.GameVersion = version.ToString();
