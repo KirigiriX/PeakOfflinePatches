@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-
-private static int? cachedLevelIndex;
 // Token: 0x02000074 RID: 116
 public static partial class CloudAPI
 {
