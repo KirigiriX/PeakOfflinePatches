@@ -15,9 +15,9 @@ public static partial class CloudAPI
 		LoginResponse loginResponse = new LoginResponse
 		{
 			VersionOkay = true,
-			HoursUntilLevel = 60,
-			MinutesUntilLevel = 60,
-			SecondsUntilLevel = 60,
+			HoursUntilLevel = 24,
+			MinutesUntilLevel = 00,
+			SecondsUntilLevel = 00,
 			LevelIndex = CloudAPI.cachedLevelIndex.Value,
 			Message = "THE LANGUAGES PATCH IS HERE!! hola! 你好! bonjour! привет! olá! 안녕! ciao! hallo! привіт! こんにちは!"
 		};
