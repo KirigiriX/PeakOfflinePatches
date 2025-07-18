@@ -1,12 +1,12 @@
 # Peak Offline Patches
 
-This project contains lightweight binary patches for Unity-based games using the PEAK system. It removes or disables online checks directly inside the compiled game files—no external tools or injectors needed.
+This project contains lightweight assembly patches for PEAK. It removes or disables online checks directly inside the compiled game files—no external tools or injectors needed.
 
 ---
 
 ## 🔧 What It Does
 
-- Removes server check logic from Unity games using PEAK
+- Removes server check logic on PEAK
 - Enables full offline play
 - Works by editing compiled code (usually `Assembly-CSharp.dll & PhotonUnityNetworking.dll`)
 
