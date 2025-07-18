@@ -34,3 +34,42 @@ This project contains lightweight assembly patches for PEAK. It removes or disab
 
 ---
 
+                 ┌─────────────────────────────┐
+                 │        Game Client           │
+                 │ (Original code expects server) │
+                 └─────────────┬───────────────┘
+                               │
+                 (Requests login/version & multiplayer connection)
+                               │
+                               ▼
+                ┌─────────────────────────────┐
+                │      Patched CloudAPI        │
+                │  (Local stub replaces server)│
+                │ - Returns mocked login data  │
+                │ - Generates random LevelIndex│
+                │ - Sends back static messages │
+                └─────────────┬───────────────┘
+                              │
+                              ▼
+                ┌─────────────────────────────┐
+                │   Patched NetworkConnector   │
+                │  (Photon forced OfflineMode) │
+                │ - Sets PhotonNetwork.OfflineMode = true │
+                │ - Skips real server connection           │
+                └─────────────┬───────────────┘
+                              │
+                              ▼
+                ┌─────────────────────────────┐
+                │   Photon Networking Engine   │
+                │   (Offline mode active)      │
+                │ - Simulates multiplayer locally │
+                │ - No actual network traffic    │
+                └─────────────┬───────────────┘
+                              │
+                              ▼
+               ┌─────────────────────────────┐
+               │      Game Runs Fully Offline │
+               │ - All server communication is emulated locally │
+               │ - Multiplayer features run locally │
+               └─────────────────────────────┘
+
