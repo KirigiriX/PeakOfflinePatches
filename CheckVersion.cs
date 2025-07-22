@@ -19,7 +19,7 @@ public static partial class CloudAPI
 			MinutesUntilLevel = 00,
 			SecondsUntilLevel = 00,
 			LevelIndex = CloudAPI.cachedLevelIndex.Value,
-			Message = "new patch :) have fun with the flying disc~"
+			Message = "new patch :) have fun with the flying disc~  ALSO BACKPACK FIX??"
 		};
 		if (response != null)
 		{
