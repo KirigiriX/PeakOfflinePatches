@@ -19,7 +19,7 @@ public static partial class CloudAPI
 			MinutesUntilLevel = 00,
 			SecondsUntilLevel = 00,
 			LevelIndex = CloudAPI.cachedLevelIndex.Value,
-			Message = "THE LANGUAGES PATCH IS HERE!! hola! 你好! bonjour! привет! olá! 안녕! ciao! hallo! привіт! こんにちは!"
+			Message = "new patch :) have fun with the flying disc~"
 		};
 		if (response != null)
 		{
