@@ -1,28 +1,24 @@
 using System;
 using UnityEngine;
 
-public static partial class CloudAPI
+public static void CheckVersion(Action<LoginResponse> response)
 {
-    // Adjusted start date to align LevelIndex 55 with 07/08/2025
-    private static readonly DateTime startDate = new DateTime(2025, 6, 14);
+    DateTime now = DateTime.Now;
+    DateTime midnight = now.Date.AddDays(1)
+    TimeSpan timeUntilMidnight = midnight - now;
 
-    public static void CheckVersion(Action<LoginResponse> response)
+    int daysSinceStart = (now.Date - startDate).Days;
+    int levelIndex = Mathf.Max(1, daysSinceStart + 1);
+
+    LoginResponse loginResponse = new LoginResponse
     {
-        DateTime today = DateTime.UtcNow.Date; // Use UTC or local depending on your needs
-        int daysSinceStart = (today - startDate).Days;
+        VersionOkay = true,
+        HoursUntilLevel = timeUntilMidnight.Hours,
+        MinutesUntilLevel = timeUntilMidnight.Minutes,
+        SecondsUntilLevel = timeUntilMidnight.Seconds,
+        LevelIndex = levelIndex,
+        Message = "why did the chicken cross the caldera?"
+    };
 
-        int levelIndex = Mathf.Max(1, daysSinceStart + 1);
-
-        LoginResponse loginResponse = new LoginResponse
-        {
-            VersionOkay = true,
-            HoursUntilLevel = 24,
-            MinutesUntilLevel = 0,
-            SecondsUntilLevel = 0,
-            LevelIndex = levelIndex,
-            Message = "why did the chicken cross the caldera?"
-        };
-
-        response?.Invoke(loginResponse);
-    }
+    response?.Invoke(loginResponse);
 }
