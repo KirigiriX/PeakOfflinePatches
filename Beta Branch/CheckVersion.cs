@@ -1,27 +1,25 @@
 using System;
 using UnityEngine;
 
-// Token: 0x02000074 RID: 116
 public static partial class CloudAPI
 {
-    private static int? cachedLevelIndex;
+    // Adjusted start date to align LevelIndex 55 with 07/08/2025
+    private static readonly DateTime startDate = new DateTime(2025, 6, 14);
 
-    // Token: 0x0600042B RID: 1067 RVA: 0x00030930 File Offset: 0x0002EB30
     public static void CheckVersion(Action<LoginResponse> response)
     {
-        if (CloudAPI.cachedLevelIndex == null)
-        {
-            System.Random rng = new System.Random();
-            CloudAPI.cachedLevelIndex = rng.Next(0, int.MaxValue); // random int >= 0
-        }
+        DateTime today = DateTime.UtcNow.Date; // Use UTC or local depending on your needs
+        int daysSinceStart = (today - startDate).Days;
+
+        int levelIndex = Mathf.Max(1, daysSinceStart + 1);
 
         LoginResponse loginResponse = new LoginResponse
         {
             VersionOkay = true,
             HoursUntilLevel = 24,
-            MinutesUntilLevel = 00,
-            SecondsUntilLevel = 00,
-            LevelIndex = CloudAPI.cachedLevelIndex.Value,
+            MinutesUntilLevel = 0,
+            SecondsUntilLevel = 0,
+            LevelIndex = levelIndex,
             Message = "Thanks for testing the PEAK beta. Watch out for bugs! (the current beta is the same as the live game, check back later for a new beta!)"
         };
 
