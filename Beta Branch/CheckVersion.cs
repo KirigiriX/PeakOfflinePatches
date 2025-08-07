@@ -8,17 +8,19 @@ public static partial class CloudAPI
 
     public static void CheckVersion(Action<LoginResponse> response)
     {
-        DateTime today = DateTime.UtcNow.Date; // Use UTC or local depending on your needs
-        int daysSinceStart = (today - startDate).Days;
+        DateTime now = DateTime.Now;                  // current system local time
+        DateTime midnight = now.Date.AddDays(1);      // next midnight (12:00 AM)
+        TimeSpan timeUntilMidnight = midnight - now; // time left until midnight
 
+        int daysSinceStart = (now.Date - startDate).Days;
         int levelIndex = Mathf.Max(1, daysSinceStart + 1);
 
         LoginResponse loginResponse = new LoginResponse
         {
             VersionOkay = true,
-            HoursUntilLevel = 24,
-            MinutesUntilLevel = 0,
-            SecondsUntilLevel = 0,
+            HoursUntilLevel = timeUntilMidnight.Hours,
+            MinutesUntilLevel = timeUntilMidnight.Minutes,
+            SecondsUntilLevel = timeUntilMidnight.Seconds,
             LevelIndex = levelIndex,
             Message = "Thanks for testing the PEAK beta. Watch out for bugs! (the current beta is the same as the live game, check back later for a new beta!)"
         };
